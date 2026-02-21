@@ -16,10 +16,9 @@ class WarpCli < Formula
 
   def caveats
     <<~EOS
-      Cloudflare WARP app must be installed first:
+      WARP daemon is required. Install it with one of:
         brew install --cask cloudflare-warp
-
-      Or download from: https://apps.apple.com/app/cloudflare-warp/id1423210915
+        or download from: https://apps.apple.com/app/cloudflare-warp/id1423210915
     EOS
   end
 
