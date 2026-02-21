@@ -3,6 +3,7 @@ class Warp < Formula
   homepage "https://github.com/zero8dotdev/warp-cli"
   url "https://github.com/zero8dotdev/warp-cli/archive/refs/heads/main.tar.gz"
   sha256 "eed2e64efeceb0c48df96f19b9dbcf05fb55d8add9b95ade7fc0ba210334c194"
+  version "0.1.0"
   license "MIT"
   head "https://github.com/zero8dotdev/warp-cli.git", branch: "main"
 
