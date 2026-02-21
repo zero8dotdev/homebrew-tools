@@ -8,28 +8,20 @@ class WarpCli < Formula
   head "https://github.com/zero8dotdev/warp-cli.git", branch: "main"
 
   depends_on "rust" => :build
-  depends_on "cloudflare-warp" => :cask
 
   def install
     system "cargo", "build", "--release"
     bin.install "target/release/warp"
   end
 
-  def post_install
-    # Remove the GUI app to keep things clean for CLI-only users
-    gui_app = "/Applications/Cloudflare WARP.app"
-    if File.exist?(gui_app)
-      puts "Removing Cloudflare WARP GUI app (daemon will continue running)..."
-      system "rm", "-rf", gui_app
-    end
-  end
-
   def caveats
     <<~EOS
-      ✅ WARP daemon installed and configured
-      ✅ GUI app removed (not needed for CLI)
-      
-      Your WARP daemon is running. Try it:
+      ✅ warp-cli is installed!
+
+      Next step: Install WARP daemon (if not already installed)
+        brew install --cask cloudflare-warp
+
+      Then start using:
         warp up          # Connect to WARP
         warp status      # Check connection
         warp --help      # See all commands
