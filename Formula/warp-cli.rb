@@ -2,7 +2,7 @@ class Warp < Formula
   desc "Beautiful CLI for Cloudflare WARP - Control your VPN from the terminal"
   homepage "https://github.com/zero8dotdev/warp-cli"
   url "https://github.com/zero8dotdev/warp-cli/archive/refs/heads/main.tar.gz"
-  sha256 "8eee5574d09bec5960a77f312f63c3667361c9f6edea06bc7a6b24b44b81d0b0"
+  sha256 "18ffbdbacb706e77ff3159fea79fbbe9136898f4481b2cabd5f3cf04b453cf53"
   license "MIT"
   head "https://github.com/zero8dotdev/warp-cli.git", branch: "main"
 
