@@ -2,7 +2,7 @@ class WarpCli < Formula
   desc "Beautiful CLI for Cloudflare WARP - Control your VPN from the terminal"
   homepage "https://github.com/zero8dotdev/warp-cli"
   url "https://github.com/zero8dotdev/warp-cli/archive/refs/heads/main.tar.gz"
-  sha256 "5ecced8c50786200113654bca385c2daf6b868a7c35e940c0781b2580ae9dce0"
+  sha256 "6a972533488e3ab49b4d5b9e55bf366f47842a5800c42316089449fc47a04d28"
   version "0.1.0"
   license "MIT"
   head "https://github.com/zero8dotdev/warp-cli.git", branch: "main"
@@ -15,17 +15,37 @@ class WarpCli < Formula
   end
 
   def caveats
-    <<~EOS
-      ✅ warp-cli is installed!
+    daemon_installed = system("launchctl list | grep -q com.cloudflare.warp.daemon")
+    gui_installed = File.exist?("/Applications/Cloudflare WARP.app")
 
-      Next step: Install WARP daemon (if not already installed)
-        brew install --cask cloudflare-warp
+    message = ""
+    message += "✅ warp-cli installed!\n\n"
+    
+    message += "📊 Installation Summary:\n"
+    message += "  • Binary: warp\n"
+    message += "  • Location: #{bin}/warp\n"
+    message += "  • Size: ~4.4MB\n\n"
 
-      Then start using:
-        warp up          # Connect to WARP
-        warp status      # Check connection
-        warp --help      # See all commands
-    EOS
+    if !daemon_installed
+      message += "⚠️  WARP daemon not detected.\n"
+      message += "Install it with:\n"
+      message += "  brew install --cask cloudflare-warp\n\n"
+    else
+      message += "✅ WARP daemon is running\n\n"
+    end
+
+    if gui_installed
+      message += "💡 GUI app detected at /Applications/Cloudflare WARP.app\n"
+      message += "   (Not needed - this CLI doesn't use it)\n\n"
+    end
+
+    message += "🚀 Quick start:\n"
+    message += "  warp up          # Connect to WARP\n"
+    message += "  warp status      # Check connection + IP\n"
+    message += "  warp --help      # See all commands\n\n"
+    message += "📖 Learn more: https://github.com/zero8dotdev/warp-cli"
+
+    message
   end
 
   test do
